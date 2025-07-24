@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8738252933596463331}
+  - component: {fileID: 8172584750732313766}
   m_Layer: 0
   m_Name: card position
   m_TagString: Untagged
@@ -35,6 +36,27 @@ Transform:
   - {fileID: 6049242890586030159}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8172584750732313766
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322021587027320615}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.31, y: 0.14, z: 0.33}
+  m_Center: {x: 0, y: 0.03, z: 0.12}
 --- !u!1 &1916020840570241635
 GameObject:
   m_ObjectHideFlags: 0
