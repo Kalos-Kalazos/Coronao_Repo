@@ -10,21 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 909d9a0218c02c747a0dd1d6253e917c, type: 3}
-  m_Name: Card_2
+  m_Name: Card_J
   m_EditorClassIdentifier: 
   id: 06252cb6-309f-4e34-8aae-40fc54138de8
-  displayName: 2 de picas
-  description: "El As puede limpiar la posicion o a\xF1adir un 1 al monton"
+  displayName: "J\u2666"
+  description: La figura mas basica conseguida por hacer un 10
   playType: 1
   skills: 
   targetRequirement: 0
-  baseValue: 2
-  isFigure: 0
-  costsTurn: 1
+  baseValue: 10
+  isFigure: 1
+  costsTurn: 0
   hasActivation: 0
   icon: {fileID: 0}
   visualPrefab: {fileID: 0}
   playVFX: {fileID: 0}
   playSFX: {fileID: 0}
   tags: []
-  rarity: 0

@@ -1,9 +1,7 @@
-// CardsController.cs
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static CardsData;
 
 [RequireComponent(typeof(Collider))]
 public class CardsController : MonoBehaviour,
@@ -11,8 +9,7 @@ public class CardsController : MonoBehaviour,
     IBeginDragHandler,
     IDragHandler,
     IEndDragHandler,
-    IPointerClickHandler,
-    IPoolable
+    IPointerClickHandler
 {
     [Header("References")]
     [SerializeField] private CardView view;
@@ -20,7 +17,7 @@ public class CardsController : MonoBehaviour,
     [SerializeField] private LayerMask slotLayerMask;
     [SerializeField] private Camera worldCamera;
 
-    // Datos de instancia
+    // Datos
     public string InstanceId { get; private set; }
     public CardsData Data { get; private set; }
 
@@ -32,7 +29,7 @@ public class CardsController : MonoBehaviour,
     private bool inputBlocked = false;
     private float lastClickTime = -999f;
 
-    // Eventos (intención)
+    // Eventos intención
     public struct PlayRequest
     {
         public string CardInstanceId;
@@ -58,6 +55,7 @@ public class CardsController : MonoBehaviour,
         Data = data ?? throw new ArgumentNullException(nameof(data));
         InstanceId = string.IsNullOrEmpty(instanceId) ? Guid.NewGuid().ToString() : instanceId;
         view?.InitFromData(Data);
+        Debug.Log($"[CardsController] Init: {Data.DisplayName} (InstanceId={InstanceId})");
     }
 
     #region Input handlers
@@ -65,6 +63,7 @@ public class CardsController : MonoBehaviour,
     {
         if (inputBlocked) return;
         view?.SetHovered(true);
+        Debug.Log($"[CardsController] OnPointerDown on {Data?.DisplayName}");
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -72,9 +71,12 @@ public class CardsController : MonoBehaviour,
         if (inputBlocked) return;
         if (Time.realtimeSinceStartup - lastClickTime < clickDebounce) return;
         lastClickTime = Time.realtimeSinceStartup;
+
+        Debug.Log($"[CardsController] OnPointerClick on {Data?.DisplayName}");
         if (Data != null && Data.TargetReq == CardTargetRequirement.None)
         {
-            view?.PlayPrePlayAnimation();
+            // pre-visual feedback via log (no animation)
+            Debug.Log($"[CardsController] Pre-play (no target) for {Data.DisplayName}");
         }
         else
         {
@@ -88,6 +90,7 @@ public class CardsController : MonoBehaviour,
         isDragging = true;
         view?.OnDragStart();
         transform.SetParent(null, true);
+        Debug.Log($"[CardsController] OnBeginDrag {Data?.DisplayName}");
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -122,32 +125,39 @@ public class CardsController : MonoBehaviour,
             var slot = hit.collider.GetComponent<TableSlot>();
             int slotIndex = slot != null ? slot.SlotIndex : -1;
             var req = new PlayRequest(InstanceId, Data.Id, slotIndex, hit.point, hit.normal);
+            Debug.Log($"[CardsController] OnEndDrag -> hit slot {slotIndex} for {Data?.DisplayName}");
             OnPlayRequested?.Invoke(req);
-            view?.PlayPrePlayAnimation();
+            // pre-visual
+            Debug.Log($"[CardsController] Emitted PlayRequest for {Data?.DisplayName} -> slot {slotIndex}");
             inputBlocked = true;
         }
         else
         {
+            Debug.Log($"[CardsController] OnEndDrag -> dropped outside slot, reverting {Data?.DisplayName}");
             view?.OnDragCanceled();
         }
     }
     #endregion
 
-    #region Public API called by authoritative logic (TurnManager / TableManager)
+    #region API pública (aprobación / rechazo)
+    // Cuando la autoridad aprueba, movemos la vista y confirmamos (sin animaciones)
     public void OnPlayApproved(int slotIndex, Vector3 slotWorldPos, Quaternion slotWorldRot)
     {
+        Debug.Log($"[CardsController] OnPlayApproved: moving {Data?.DisplayName} to slot {slotIndex}");
         view?.AnimatePlaceOnTable(slotIndex, slotWorldPos, slotWorldRot, () =>
         {
             view?.ConfirmPlacement(slotIndex);
             inputBlocked = false;
-            // Notificar autoridad que la animación terminó y se confirma resolución
-            // Esto lo hará el TurnManager; aquí solo visualmente confirmamos.
+            Debug.Log($"[CardsController] Placement completed for {Data?.DisplayName} in slot {slotIndex}");
+            // NOTA: la confirmación lógica (TableManager.ConfirmPlacementToSlot) debe ser llamada
+            // por el TurnManager/autoridad cuando corresponda.
         });
     }
 
     public void OnPlayRejected(string reason = null)
     {
         inputBlocked = false;
+        Debug.Log($"[CardsController] OnPlayRejected for {Data?.DisplayName}. Reason: {reason}");
         view?.PlayRejectFeedback(reason);
         view?.CancelPlacement();
     }
@@ -157,25 +167,7 @@ public class CardsController : MonoBehaviour,
         isDragging = false;
         inputBlocked = false;
         view?.OnDragCanceled();
-    }
-    #endregion
-
-    #region Pool hooks
-    public void OnPoolSpawn()
-    {
-        // reset runtime state
-        isDragging = false;
-        inputBlocked = false;
-        InstanceId = Guid.NewGuid().ToString(); // new instance id for reuse
-        // ensure the object is active and ready visually
-        view?.HideTooltip();
-    }
-
-    public void OnPoolDespawn()
-    {
-        // cleanup
-        CancelInteraction();
-        // reset parent/transform if needed by factory
+        Debug.Log($"[CardsController] CancelInteraction for {Data?.DisplayName}");
     }
     #endregion
 }

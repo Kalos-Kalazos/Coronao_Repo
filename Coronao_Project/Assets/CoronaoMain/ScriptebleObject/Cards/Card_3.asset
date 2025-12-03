@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 909d9a0218c02c747a0dd1d6253e917c, type: 3}
-  m_Name: Card_1
+  m_Name: Card_3
   m_EditorClassIdentifier: 
   id: 06252cb6-309f-4e34-8aae-40fc54138de8
-  displayName: As de picas
-  description: "El As puede limpiar la posicion o a\xF1adir un 1 al monton"
+  displayName: "3\u2666"
+  description: "El 3 si juntas 3 le a\xF1ades un 9 al oponente, le pasas turno y
+    le robas una carta"
   playType: 1
   skills: 
   targetRequirement: 0
-  baseValue: 1
+  baseValue: 3
   isFigure: 0
   costsTurn: 1
   hasActivation: 0
@@ -27,4 +28,3 @@ MonoBehaviour:
   playVFX: {fileID: 0}
   playSFX: {fileID: 0}
   tags: []
-  rarity: 0
