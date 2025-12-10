@@ -12,18 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909d9a0218c02c747a0dd1d6253e917c, type: 3}
   m_Name: Card_2
   m_EditorClassIdentifier: 
-  id: 06252cb6-309f-4e34-8aae-40fc54138de8
   displayName: "2\u2666"
-  description: "El As puede limpiar la posicion o a\xF1adir un 1 al monton"
-  playType: 1
-  skills: 
-  targetRequirement: 0
+  description: doble 2 intercambia esa pila por la de un oponente
   baseValue: 2
   isFigure: 0
-  costsTurn: 1
-  hasActivation: 0
-  icon: {fileID: 0}
-  visualPrefab: {fileID: 0}
-  playVFX: {fileID: 0}
-  playSFX: {fileID: 0}
-  tags: []
+  artwork: {fileID: 0}
+  symbol: 0
+  internalId: 
+  sameNumberCount: 1
+  costsActionByDefault: 1
+  defaultPlayTypes: 
+  defaultSkills: 
+  defaultTargetRequirement: 2
+  sfxOnPlay: {fileID: 0}
+  sfxOnEvolve: {fileID: 0}
