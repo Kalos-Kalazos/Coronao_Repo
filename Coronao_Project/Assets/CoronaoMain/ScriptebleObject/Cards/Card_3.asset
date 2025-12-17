@@ -15,6 +15,7 @@ MonoBehaviour:
   displayName: "3\u2666"
   description: "El 3 si juntas 3 le a\xF1ades un 9 al oponente, le pasas turno y
     le robas una carta"
+  defaultPalo: 1
   baseValue: 3
   isFigure: 0
   artwork: {fileID: 0}

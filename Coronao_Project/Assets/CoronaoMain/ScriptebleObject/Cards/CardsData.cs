@@ -48,7 +48,7 @@ public class CardsData : ScriptableObject
     [Header("Basic")]
     [SerializeField] private string displayName = "New Card";
     [SerializeField, TextArea(3, 8)] private string description = "Description";
-
+    [SerializeField] private Palo defaultPalo = new();
     [SerializeField] private int baseValue = 0;             // valor que suma a la pila (0 para figuras)
     [SerializeField] private bool isFigure = false;         // si la carta es figura (J/Q/K) -> no admite cartas encima
 

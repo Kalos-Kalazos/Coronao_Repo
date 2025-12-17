@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5417798579430985401}
   - component: {fileID: 2119972952571017535}
   - component: {fileID: 2877095903295095161}
-  - component: {fileID: 7554085018091273510}
-  - component: {fileID: 9114046455986888085}
-  m_Layer: 0
+  - component: {fileID: 839559489803061785}
+  - component: {fileID: 535277779402259301}
+  m_Layer: 8
   m_Name: CardPlaceholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,6 +64,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -85,9 +87,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &2877095903295095161
 BoxCollider:
@@ -110,7 +114,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7554085018091273510
+--- !u!114 &839559489803061785
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,30 +125,32 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d439428a5d3f03f45abd405976e09eec, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardView
   meshRenderer: {fileID: 2119972952571017535}
   defaultMaterial: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   moveSpeed: 8
   elevateOnDrag: 0.25
   dragLerpSpeed: 20
   placementSnapDuration: 0.25
-  tooltipGO: {fileID: 0}
-  tooltipText: {fileID: 0}
---- !u!114 &9114046455986888085
-MonoBehaviour:
+--- !u!95 &535277779402259301
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9139984480673949344}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42f7c9bfe9c3a6441b1d4300f0be6545, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  view: {fileID: 7554085018091273510}
-  clickDebounce: 0.25
-  slotLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  worldCamera: {fileID: 0}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 87a5788bd6902c446b560282970b6d2e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

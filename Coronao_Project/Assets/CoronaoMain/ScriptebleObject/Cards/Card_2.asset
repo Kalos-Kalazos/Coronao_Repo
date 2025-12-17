@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "2\u2666"
   description: doble 2 intercambia esa pila por la de un oponente
+  defaultPalo: 1
   baseValue: 2
   isFigure: 0
   artwork: {fileID: 0}

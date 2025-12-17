@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "4\u2666"
   description: El 4 si juntas 3 todos rotan su mano a la derecha
+  defaultPalo: 1
   baseValue: 4
   isFigure: 0
   artwork: {fileID: 0}

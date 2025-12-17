@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "As \u2666"
   description: "El As puede limpiar la posicion o a\xF1adir un 1 al monton"
+  defaultPalo: 1
   baseValue: 1
   isFigure: 0
   artwork: {fileID: 0}
